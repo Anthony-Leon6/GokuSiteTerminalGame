@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goku Mini Game</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+        #gameCanvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('gokubackground.gif') no-repeat center center/cover; /* Use your moving background GIF here */
+            z-index: 0;
+        }
+        #scorePanel {
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            z-index: 2;
+        }
+        #controlHelp {
+            font-size: 18px;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            z-index: 2;
+        }
+        #gameOverMessage {
+            display: none;
+            font-size: 24px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+        #restartButton {
+            display: none;
+            font-size: 18px;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+        #characterGif {
+            position: absolute;
+            bottom: 50px; /* Place character on the ground */
+            left: 100px;
+            width: 250px; /* Increase size */
+            height: auto;
+            z-index: 1;
+        }
+        .fireball {
+            position: absolute;
+            width: 350px; /* Adjust size */
+            height: auto;
+            z-index: 1;
+            transform: rotate(90deg); /* Rotate fireballs to point down */
+        }
+    </style>
+</head>
+<body>
+    <div id="scorePanel">Fireballs Dodged: 0</div>
+    <div id="controlHelp">Use Arrow Keys to Move Goku</div>
+    <div id="gameOverMessage">Game Over!</div>
+    <button id="restartButton">Restart Game</button>
+    <img id="characterGif" src="goku.gif" alt="Goku Character">
+    <canvas id="gameCanvas"></canvas>
+
+    <script src="mini-game.js"></script>
+</body>
+</html>

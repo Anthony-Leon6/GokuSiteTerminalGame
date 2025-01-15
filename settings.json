@@ -1,0 +1,26 @@
+{
+    "profiles": {
+        "defaults": {
+            "fontFace": "Consolas",
+            "fontSize": 12,
+            "colorScheme": "YourColorScheme"
+        },
+        "list": [
+            {
+                "guid": "{your-profile-guid}",
+                "name": "Your Profile Name",
+                "commandline": "cmd.exe",
+                "hidden": false
+            }
+        ]
+    },
+    "schemes": [
+        {
+            "name": "YourColorScheme",
+            "black": "#000000",
+            "white": "#FFFFFF",
+            "background": "#1E1E1E",
+            "foreground": "#D4D4D4"
+        }
+    ]
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goku Terminal Mind Game</title>
+<style>
+    body, html {
+    height: 100%;
+    margin: 0;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+    padding: 10px;
+    background: black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #fff700, 0 0 20px #ffea00, 0 0 30px #ffc400, 0 0 40px #ffc400;
+    position: absolute;
+    top: 20px;
+    z-index: 2;
+    }
+    .glow-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: rgb(255, 247, 0);
+    text-decoration: none;
+    border: 2px solid rgb(255, 251, 0);
+    border-radius: 5px;
+    background: black;
+    transition: all 0.3s;
+    }
+    .glow-button:hover {
+    box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffb700, 0 0 40px #ffc400;
+    }
+    .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    }
+    .terminal {
+    width: 60vw;
+    height: auto;
+    max-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 250px; 
+    z-index: 1;
+
+    }
+    .terminal-gif {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: -1;
+    }
+
+    .terminal-content {
+      color: rgb(255, 255, 0); /* Bold black text */
+    text-shadow: -1px -1px 0 #000, 
+    1px -1px 0 #000, 
+    -1px 1px 0 #000, 
+      1px 1px 0 #000; /* Outline color */
+    font-weight: bold;
+    font-family: monospace;
+      background: transparent; /* Transparent background for terminal content */
+    z-index: 1;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    }
+
+    .command-placeholder {
+    display: block;
+    margin-bottom: 10px;
+    }
+
+    .command-input {
+    width: 100%;
+      text-align: center; /* Center the input text */
+    font-family: monospace;
+    font-size: 16px;
+    background: transparent;
+    border: none;
+      color: rgb(0, 0, 0); /* Bold black text */
+    font-weight: bold;
+    outline: none;
+    padding: 10px 0;
+    }
+
+    .help-section {
+    width: 20vw;
+    height: auto;
+    max-height: 80vh;
+    background: rgba(0, 0, 0, 0.7);
+    color: rgb(255, 238, 0);
+    font-family: monospace;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow-y: auto;
+    position: absolute;
+      left: 20px; /* Margin to the left side of the page */
+      top: 100px; /* Align with the terminal */
+    }
+
+    .help-command {
+    margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="button-container">
+    <a href="https://link1.com" class="glow-button">Telegram</a>
+    <a href="https://link2.com" class="glow-button">X</a>
+    <a href="mini-game.html" class="glow-button">Mini Game</a>
+</div>
+<div class="main-container">
+    <div class="terminal" id="draggableTerminal">
+    <img src="terminal.gif" alt="Terminal GIF" class="terminal-gif">
+    <div class="terminal-content" id="terminalContent">
+        <!-- Placeholder commands and images about Goku -->
+        <span class="command-placeholder">$ Who is Goku? Type a command.</span>
+        <title>Placeholder Text Color</title> 
+        <style> input::placeholder { 
+            color: 
+            black; } </style> </head> <body>
+        <!-- Input for new commands -->
+        <input type="text" id="commandInput" class="command-input" placeholder="Type a command here...">
+    </div>
+    </div>
+    <div class="help-section">
+    <div class="help-command"><strong>Who is Goku?</strong> - Learn about Goku</div>
+    <div class="help-command"><strong>Power Level?</strong> - Find out Goku's power level</div>
+    <div class="help-command"><strong>Favorite Move?</strong> - Discover Goku's favorite move</div>
+    <div class="help-command"><strong>Goku in Action</strong> - See an image of Goku in action</div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+    const terminalContent = document.getElementById('terminalContent');
+    const commandInput = document.getElementById('commandInput');
+    const draggableTerminal = document.getElementById('draggableTerminal');
+
+    const commandResponses = {
+        "Who is Goku?": "Goku is a Saiyan and the main protagonist of Dragon Ball.",
+        "Power Level?": "Goku's power level is over 9000!",
+        "Favorite Move?": "Goku's favorite move is the Kamehameha!",
+        "Goku in Action": "Displaying an image of Goku in action."
+    };
+
+      // Handle command input
+    commandInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+        const commandText = commandInput.value;
+        if (commandText.trim() !== '') {
+            addCommand(commandText);
+            handleCommand(commandText);
+            commandInput.value = ''; // Clear the input field
+        }
+        }
+    });
+
+      // Add a new command to the terminal
+    function addCommand(command) {
+        const commandElement = document.createElement('span');
+        commandElement.className = 'command-placeholder';
+        commandElement.textContent = `$ ${command}`;
+        terminalContent.insertBefore(commandElement, commandInput);
+    }
+
+      // Handle specific command input and generate response
+    function handleCommand(command) {
+        const response = commandResponses[command];
+        if (response) {
+        const responseElement = document.createElement('span');
+        responseElement.className = 'command-placeholder';
+        responseElement.textContent = response;
+        terminalContent.insertBefore(responseElement, commandInput);
+        } else {
+        const unknownCommandElement = document.createElement('span');
+        unknownCommandElement.className = 'command-placeholder';
+        unknownCommandElement.textContent = "Unknown command. Please refer to the help section.";
+        terminalContent.insertBefore(unknownCommandElement, commandInput);
+        }
+    }
+
+      // Example initial commands
+
+
+      // Make the terminal widget draggable
+    draggableTerminal.addEventListener('mousedown', (event) => {
+        let offsetX = event.clientX - draggableTerminal.getBoundingClientRect().left;
+        let offsetY = event.clientY - draggableTerminal.getBoundingClientRect().top;
+
+        function moveAt(pageX, pageY) {
+        draggableTerminal.style.left = pageX - offsetX + 'px';
+        draggableTerminal.style.top = pageY - offsetY + 'px';
+        }
+
+        function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        document.addEventListener('mouseup', () => {
+        document.removeEventListener('mousemove', onMouseMove);
+        }, { once: true });
+    });
+
+    draggableTerminal.style.position = 'absolute';
+    });
+</script>
+</body>
+</html>
