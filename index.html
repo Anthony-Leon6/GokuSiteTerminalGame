@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Goku Terminal Mind Game</title>
+<title>Androide Ai</title>
 <style>
     body, html {
     height: 100%;
@@ -67,8 +67,8 @@
 
     .terminal-content {
       color: rgb(255, 255, 0); /* Bold black text */
-    text-shadow: -1px -1px 0 #000, 
-    1px -1px 0 #000, 
+    text-shadow: -1px -1px 0 #ff8c00, 
+    1px -1px 0 #ff9900, 
     -1px 1px 0 #000, 
       1px 1px 0 #000; /* Outline color */
     font-weight: bold;
@@ -121,6 +121,21 @@
     .help-command {
     margin-bottom: 10px;
     }
+
+    .header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'Brush Script MT', cursive; color: rgb(255, 247, 0);
+    font-family: monospace;
+    font-size: 40px;
+    background: rgba(0, 0, 0, 0);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 3;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
+    }
+
 </style>
 </head>
 <body>
@@ -134,7 +149,7 @@
     <img src="terminal.gif" alt="Terminal GIF" class="terminal-gif">
     <div class="terminal-content" id="terminalContent">
         <!-- Placeholder commands and images about Goku -->
-        <span class="command-placeholder">$ Who is Goku? Type a command.</span>
+        <span class="command-placeholder">$ Who is Androide Ai? Type a command.</span>
         <title>Placeholder Text Color</title> 
         <style> input::placeholder { 
             color: 
@@ -144,11 +159,14 @@
     </div>
     </div>
     <div class="help-section">
-    <div class="help-command"><strong>Who is Goku?</strong> - Learn about Goku</div>
+    <div class="help-command"><strong>Who is Androide AI?</strong> - Learn about Androide AI</div>
     <div class="help-command"><strong>Power Level?</strong> - Find out Goku's power level</div>
     <div class="help-command"><strong>Favorite Move?</strong> - Discover Goku's favorite move</div>
-    <div class="help-command"><strong>Goku in Action</strong> - See an image of Goku in action</div>
+    <div class="help-command"><strong>Who is Goku?</strong> - Learn about Goku</div>
     </div>
+</div>
+<div class="header">
+    <strong>ANDROIDEAI</strong>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -157,10 +175,10 @@
     const draggableTerminal = document.getElementById('draggableTerminal');
 
     const commandResponses = {
-        "Who is Goku?": "Goku is a Saiyan and the main protagonist of Dragon Ball.",
+        "Who is Androide AI?": "Android 18 (人造人間１８号 Jinzōningen Jū Hachi-Gō), or C-18 in the Italian adaptation of the anime, originally called Lazuli when she was a normal human, is the twin sister of Android 17",
         "Power Level?": "Goku's power level is over 9000!",
         "Favorite Move?": "Goku's favorite move is the Kamehameha!",
-        "Goku in Action": "Displaying an image of Goku in action."
+        "Who is Goku?" : "Goku is a fictional character and the main protagonist of the "Dragon Ball" manga and anime series, created by Akira Toriyama. He's known for his boundless energy, unwavering determination, and insatiable appetite. He starts as a young boy with a monkey tail and evolves into one of the universe's strongest warriors. Goku is a Saiyan, a race of extraterrestrial beings known for their fighting prowess. He's famous for his signature techniques like the Kamehameha wave and his ability to transform into more powerful forms, such as Super Saiyan"
     };
 
       // Handle command input
@@ -208,23 +226,7 @@
         let offsetY = event.clientY - draggableTerminal.getBoundingClientRect().top;
 
         function moveAt(pageX, pageY) {
-        draggableTerminal.style.left = pageX - offsetX + 'px';
-        draggableTerminal.style.top = pageY - offsetY + 'px';
-        }
 
-        function onMouseMove(event) {
-        moveAt(event.pageX, event.pageY);
-        }
-
-        document.addEventListener('mousemove', onMouseMove);
-
-        document.addEventListener('mouseup', () => {
-        document.removeEventListener('mousemove', onMouseMove);
-        }, { once: true });
-    });
-
-    draggableTerminal.style.position = 'absolute';
-    });
 </script>
 </body>
 </html>
